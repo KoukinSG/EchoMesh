@@ -5,8 +5,8 @@ export async function getUserData() {
 
 export async function getChatAssistants() {
     return [
-        { id: 1, name: 'AI 助手 1' },
-        { id: 2, name: 'AI 助手 2' }
+        { id: 1, name: '运控助手' },
+        { id: 2, name: '财务分析助手' }
     ];
 }
 

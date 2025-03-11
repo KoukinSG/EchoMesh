@@ -1,25 +1,26 @@
 <template>
   <div class="chat-container">
-    <!-- 侧边栏 -->
-    <div class="sidebar">
-      <!-- 在 ChatAssistant 上方添加 Logo -->
-      <div class="sidebar-logo">
-        <img src="/logo.png" alt="Logo" class="logo" />
+    <!-- 侧边栏容器 -->
+    <div class="sidebar-container">
+      <!-- ChatAssistant 区域 -->
+      <div class="sidebar-assistant">
+        <!-- 在 ChatAssistant 上方添加 Logo -->
+        <div class="sidebar-logo-section">
+          <img src="/logo.png" alt="Logo1" class="logo1" />
+        </div>
+        <ChatAssistant />
       </div>
-      <ChatAssistant />
-      <ChatHistory />
+
+      <!-- ChatHistory 区域 -->
+      <div class="sidebar-history">
+        <ChatHistory />
+      </div>
     </div>
 
     <!-- 主内容区域 -->
     <div class="main-content">
-      <!-- Logo和文字 -->
-      <div class="logo-section" v-if="showLogo">
-        <img src="/favicon.png" alt="Logo" class="logo" />
-        <p class="slogan">我是审小言，很高兴见到你！</p>
-      </div>
-
       <!-- 聊天窗口 -->
-      <ChatWindow @user-input="handleUserInput" />
+      <ChatWindow />
     </div>
   </div>
 </template>
@@ -31,17 +32,6 @@ import ChatWindow from '../components/ChatWindow.vue';
 
 export default {
   components: { ChatAssistant, ChatHistory, ChatWindow },
-  data() {
-    return {
-      showLogo: true, // 控制 Logo 和文字的显示状态
-    };
-  },
-  methods: {
-    // 监听用户输入事件
-    handleUserInput() {
-      this.showLogo = false; // 用户开始提问时隐藏 Logo 和文字
-    },
-  },
 };
 </script>
 
@@ -51,44 +41,48 @@ export default {
   height: 100vh;
 }
 
-.sidebar {
+/* 侧边栏容器 */
+.sidebar-container {
   display: flex;
-  width: 40%; /* ChatAssistant和ChatHistory各占20%，总共40% */
-  align-items: flex-start; 
+  width: 40%; /* ChatAssistant 和 ChatHistory 各占 20%，总共 40% */
 }
 
-.sidebar > * {
-  flex: 1; /* 使ChatAssistant和ChatHistory各占一半 */
+/* ChatAssistant 区域 */
+.sidebar-assistant {
+  display: flex;
+  flex-direction: column; /* 垂直排列 */
+  width: 50%; /* 占父容器的一半 */
+  align-items: center; /* 水平居中 */
+  background-color: #f0f0f0; /* 背景色 */
+  padding: 10px; /* 内边距 */
 }
+
 /* 侧边栏 Logo */
-.sidebar-logo {
+.sidebar-logo-section {
   display: flex;
   justify-content: center; /* 水平居中 */
-  margin-bottom: 20px; /* 调整 Logo 和 ChatAssistant 之间的间距 */
+  align-items: center; /* 垂直居中 */
+  margin-bottom: 5px; /* 调整 Logo 和 ChatAssistant 之间的间距 */
+  margin-top: 5px;
 }
+.logo1 {
+  width: 100px; /* 根据需要调整logo大小 */
+  height: 100px;
+  margin-right: 10px;
+}
+/* ChatHistory 区域 */
+.sidebar-history {
+  display: flex;
+  width: 50%; /* 占父容器的一半 */
+  background-color: #f0f0f0; /* 背景色 */
+  padding: 10px; /* 内边距 */
+}
+
+/* 主内容区域 */
 .main-content {
   flex: 1; /* 剩余60%的宽度 */
   display: flex;
   flex-direction: column;
-}
-
-.logo-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-color: #f0f0f0;
-}
-
-.logo {
-  width: 50px; /* 根据需要调整logo大小 */
-  height: 50px;
-  margin-right: 10px;
-}
-
-.slogan {
-  margin: 0;
-  font-size: 18px;
-  font-weight: bold;
+  padding: 10px; /* 内边距 */
 }
 </style>

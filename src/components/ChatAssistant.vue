@@ -1,6 +1,5 @@
 <template>
   <div class="assistant-list">
-    <!-- 移除 Logo 部分 -->
     <ul>
       <li v-for="assistant in assistants" :key="assistant.id">{{ assistant.name }}</li>
     </ul>
