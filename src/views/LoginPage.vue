@@ -10,9 +10,16 @@
   </div>
 </template>
 
+
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from "vue"
 import { useRouter } from 'vue-router';
+import jsonData from "@/data/sample.json"; // 假设文件路径为 src/data/sample.json
+
+onMounted(async () => {
+  const response = await fetch("/users.json"); // 直接访问 public 目录下的文件
+  jsonData.value = await response.json();
+});
 
 const username = ref('');
 const password = ref('');
