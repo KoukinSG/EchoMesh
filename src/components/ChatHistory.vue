@@ -39,17 +39,16 @@ const formatDate = (timestamp) => {
 
 <style scoped>
 .chat-history {
-  width: 250px;
-  background: #fff;
-  border-right: 1px solid #ddd;
-  padding: 10px;
-  height: 100%;
+  flex: 1;
   overflow-y: auto;
+  padding: 8px;
 }
 
 h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 14px;
+  color: #6e6e80;
+  padding: 8px 12px;
+  margin-bottom: 8px;
 }
 
 ul {
@@ -58,13 +57,15 @@ ul {
 }
 
 li {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
+  padding: 12px;
+  margin: 4px 0;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.2s;
+  color: #333333;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 12px;
 }
 
 li:hover {
@@ -72,16 +73,19 @@ li:hover {
 }
 
 .active {
-  background: #007bff;
-  color: white;
+  background: #e5e5e5;
 }
 
 .chat-title {
-  font-weight: bold;
+  font-size: 14px;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .chat-date {
   font-size: 12px;
-  color: gray;
+  color: #6e6e80;
 }
 </style>

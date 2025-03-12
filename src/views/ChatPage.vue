@@ -1,25 +1,40 @@
 <template>
   <div class="chat-container">
-    <!-- 侧边栏 -->
+    <!-- 左侧边栏 -->
     <div class="sidebar">
-      <!-- 在 ChatAssistant 上方添加 Logo -->
-      <div class="sidebar-logo">
+      <!-- Logo区域 -->
+      <div class="logo-section">
         <img src="/logo.png" alt="Logo" class="logo" />
       </div>
+      
+      <!-- 助手列表 -->
       <ChatAssistant />
+      
+      <!-- 历史记录 -->
       <ChatHistory />
     </div>
 
-    <!-- 主内容区域 -->
-    <div class="main-content">
-      <!-- Logo和文字 -->
-      <div class="logo-section" v-if="showLogo">
-        <img src="/favicon.png" alt="Logo" class="logo" />
-        <p class="slogan">我是审小言，很高兴见到你！</p>
+    <!-- 右侧聊天区域 -->
+    <div class="chat-content">
+      <!-- 聊天消息区域 -->
+      <div class="messages-container">
+        <ChatWindow />
       </div>
-
-      <!-- 聊天窗口 -->
-      <ChatWindow @user-input="handleUserInput" />
+      
+      <!-- 输入框区域 -->
+      <div class="input-container">
+        <div class="input-wrapper">
+          <textarea 
+            v-model="messageInput" 
+            placeholder="输入消息..." 
+            @keydown.enter.prevent="sendMessage"
+          ></textarea>
+          <button @click="sendMessage" class="send-button">
+            <span>发送</span>
+          </button>
+        </div>
+        <div class="input-tips">按 Enter 发送消息，Shift + Enter 换行</div>
+      </div>
     </div>
   </div>
 </template>
@@ -28,20 +43,24 @@
 import ChatAssistant from '../components/ChatAssistant.vue';
 import ChatHistory from '../components/ChatHistory.vue';
 import ChatWindow from '../components/ChatWindow.vue';
+import { ref } from 'vue';
 
 export default {
   components: { ChatAssistant, ChatHistory, ChatWindow },
-  data() {
-    return {
-      showLogo: true, // 控制 Logo 和文字的显示状态
+  setup() {
+    const messageInput = ref('');
+
+    const sendMessage = () => {
+      if (!messageInput.value.trim()) return;
+      // TODO: 实现发送消息逻辑
+      messageInput.value = '';
     };
-  },
-  methods: {
-    // 监听用户输入事件
-    handleUserInput() {
-      this.showLogo = false; // 用户开始提问时隐藏 Logo 和文字
-    },
-  },
+
+    return {
+      messageInput,
+      sendMessage
+    };
+  }
 };
 </script>
 
@@ -49,46 +68,99 @@ export default {
 .chat-container {
   display: flex;
   height: 100vh;
+  background-color: #ffffff;
 }
 
 .sidebar {
-  display: flex;
-  width: 40%; /* ChatAssistant和ChatHistory各占20%，总共40% */
-  align-items: flex-start; 
-}
-
-.sidebar > * {
-  flex: 1; /* 使ChatAssistant和ChatHistory各占一半 */
-}
-/* 侧边栏 Logo */
-.sidebar-logo {
-  display: flex;
-  justify-content: center; /* 水平居中 */
-  margin-bottom: 20px; /* 调整 Logo 和 ChatAssistant 之间的间距 */
-}
-.main-content {
-  flex: 1; /* 剩余60%的宽度 */
+  width: 260px;
+  background-color: #f7f7f8;
+  color: #333333;
   display: flex;
   flex-direction: column;
+  border-right: 1px solid #e5e5e5;
 }
 
 .logo-section {
+  padding: 24px;
+  border-bottom: 1px solid #e5e5e5;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 20px;
-  background-color: #f0f0f0;
+  align-items: center;
 }
 
 .logo {
-  width: 50px; /* 根据需要调整logo大小 */
-  height: 50px;
-  margin-right: 10px;
+  height: 64px;
+  width: auto;
+  transition: transform 0.2s ease;
 }
 
-.slogan {
-  margin: 0;
-  font-size: 18px;
-  font-weight: bold;
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.chat-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+.messages-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.input-container {
+  padding: 20px;
+  background-color: #ffffff;
+  border-top: 1px solid #e5e5e5;
+}
+
+.input-wrapper {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+textarea {
+  width: 100%;
+  height: 52px;
+  padding: 12px 45px 12px 12px;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 16px;
+  resize: none;
+  outline: none;
+}
+
+textarea:focus {
+  border-color: #10a37f;
+}
+
+.send-button {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  padding: 4px 12px;
+  background-color: #10a37f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.send-button:hover {
+  background-color: #0e906f;
+}
+
+.input-tips {
+  text-align: center;
+  color: #6e6e80;
+  font-size: 12px;
+  margin-top: 8px;
 }
 </style>
