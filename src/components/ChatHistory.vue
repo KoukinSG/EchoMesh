@@ -5,8 +5,8 @@
       <li
           v-for="chat in chatHistory"
           :key="chat.id"
-          :class="{ active: chat.id === selectedChatId }"
           @click="selectChat(chat)"
+          :class="{ active: chat.id === selectedChatId }"
       >
         <span class="chat-title">{{ chat.title }}</span>
         <span class="chat-date">{{ formatDate(chat.timestamp) }}</span>
@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import {ref, defineProps, defineEmits} from 'vue';
+import { ref, defineProps, defineEmits } from 'vue';
 
 // 定义 Props 和 Emits
 const props = defineProps({

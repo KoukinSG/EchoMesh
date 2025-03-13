@@ -1,23 +1,22 @@
 <template>
   <div class="chat-container">
-    <div ref="messagesContainer" class="chat-messages">
-      <div v-for="message in messages"
-           :key="message.id"
+    <div class="chat-messages" ref="messagesContainer">
+      <div v-for="message in messages" 
+           :key="message.id" 
            :class="['message-wrapper', message.role]">
         <div class="message">
-          <div v-if="message.role === 'assistant'" class="avatar">
-            <img alt="assistant" src="/assistant-avatar.png">
+          <div class="avatar" v-if="message.role === 'assistant'">
+            <img src="/assistant-avatar.png" alt="assistant">
           </div>
-          <div :class="{ 'user-message': message.role === 'user' }" class="message-content">
+          <div class="message-content" :class="{ 'user-message': message.role === 'user' }">
             <div class="message-text">{{ message.content }}</div>
             <div class="message-footer">
               <span class="message-time">{{ formatTime(message.timestamp) }}</span>
-              <div v-if="message.role === 'assistant'" class="message-actions">
+              <div class="message-actions" v-if="message.role === 'assistant'">
                 <button class="action-btn">
-                  <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                       stroke-width="2" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-                    <rect height="4" rx="1" ry="1" width="8" x="8" y="2"></rect>
+                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
                   </svg>
                 </button>
               </div>
@@ -30,8 +29,8 @@
 </template>
 
 <script>
-import {ref, onMounted, watch} from 'vue';
-import {sendMessageToAssistant} from '../api.js';
+import { ref, onMounted, watch } from 'vue';
+import { sendMessageToAssistant } from '../api.js';
 
 export default {
   props: {

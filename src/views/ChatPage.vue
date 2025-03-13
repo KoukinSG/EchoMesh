@@ -4,32 +4,32 @@
     <div class="sidebar">
       <!-- Logo区域 -->
       <div class="logo-section">
-        <img alt="Logo" class="logo" src="/logo.png"/>
+        <img src="/logo.png" alt="Logo" class="logo" />
       </div>
-
+      
       <!-- 助手列表 -->
-      <ChatAssistant/>
-
+      <ChatAssistant />
+      
       <!-- 历史记录 -->
-      <ChatHistory/>
+      <ChatHistory />
     </div>
 
     <!-- 右侧聊天区域 -->
     <div class="chat-content">
       <!-- 聊天消息区域 -->
       <div class="messages-container">
-        <ChatWindow/>
+        <ChatWindow />
       </div>
-
+      
       <!-- 输入框区域 -->
       <div class="input-container">
         <div class="input-wrapper">
-          <textarea
-              v-model="messageInput"
-              placeholder="输入消息..."
-              @keydown.enter.prevent="sendMessage"
+          <textarea 
+            v-model="messageInput" 
+            placeholder="输入消息..." 
+            @keydown.enter.prevent="sendMessage"
           ></textarea>
-          <button class="send-button" @click="sendMessage">
+          <button @click="sendMessage" class="send-button">
             <span>发送</span>
           </button>
         </div>
@@ -43,10 +43,10 @@
 import ChatAssistant from '../components/ChatAssistant.vue';
 import ChatHistory from '../components/ChatHistory.vue';
 import ChatWindow from '../components/ChatWindow.vue';
-import {ref} from 'vue';
+import { ref } from 'vue';
 
 export default {
-  components: {ChatAssistant, ChatHistory, ChatWindow},
+  components: { ChatAssistant, ChatHistory, ChatWindow },
   setup() {
     const messageInput = ref('');
 
