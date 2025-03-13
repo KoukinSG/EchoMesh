@@ -7,7 +7,7 @@
       <div class="form-container">
         <h2>欢迎使用 审小言</h2>
         <p class="subtitle">登录以开始您的AI助手之旅</p>
-        
+
         <div class="input-group">
           <label for="username">用户名</label>
           <div class="input-wrapper">
@@ -15,10 +15,10 @@
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
-            <input 
+            <input
               id="username"
-              v-model="username" 
-              type="text" 
+              v-model="username"
+              type="text"
               placeholder="请输入用户名"
               @keyup.enter="login"
             />
@@ -32,14 +32,14 @@
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
-            <input 
+            <input
               id="password"
-              v-model="password" 
-              :type="showPassword ? 'text' : 'password'" 
+              v-model="password"
+              :type="showPassword ? 'text' : 'password'"
               placeholder="请输入密码"
               @keyup.enter="login"
             />
-            <button 
+            <button
               class="toggle-password"
               type="button"
               @click="showPassword = !showPassword"
@@ -101,7 +101,7 @@ const login = async () => {
 
   try {
     isLoading.value = true;
-    
+
     // 如果用户数据还没加载，重新加载
     if (users.value.length === 0) {
       await loadUsers();
@@ -147,6 +147,8 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  font-family: 'Inter', sans-serif;
+  color: #1a1a1a;
 }
 
 .login-container {
@@ -161,7 +163,7 @@ onMounted(() => {
 .logo-container {
   padding: 32px;
   text-align: center;
-  background: linear-gradient(to right, #667eea, #764ba2);
+  background: linear-gradient(to right, #b22222, #fa8072);
 }
 
 .logo {
@@ -256,7 +258,7 @@ input::placeholder {
   font-size: 16px;
   font-weight: 500;
   color: white;
-  background: linear-gradient(to right, #667eea, #764ba2);
+  background: linear-gradient(to right, #b22222, #fa8072);
   border: none;
   border-radius: 8px;
   cursor: pointer;
