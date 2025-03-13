@@ -2,11 +2,11 @@
   <div class="assistant-list">
     <h3>选择助手</h3>
     <ul>
-      <li 
-        v-for="assistant in assistants" 
-        :key="assistant.id"
-        :class="{ active: assistant.id === selectedAssistant }"
-        @click="selectAssistant(assistant.id)"
+      <li
+          v-for="assistant in assistants"
+          :key="assistant.id"
+          :class="{ active: assistant.id === selectedAssistant }"
+          @click="selectAssistant(assistant.id)"
       >
         <span class="assistant-icon">🤖</span>
         <span class="assistant-name">{{ assistant.name }}</span>
@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import { getChatAssistants } from '../api.js';
+import {ref} from 'vue';
+import {getChatAssistants} from '../api.js';
 
 export default {
   setup() {
