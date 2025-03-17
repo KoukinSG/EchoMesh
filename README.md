@@ -116,12 +116,17 @@ Mac重启Nginx
 nginx -s reload
 ```
 
-Mac修改Nginx配置文件路径
+Mac修改Nginx配置文件路径，具体如何修改暂时请百度了解。
 
 ```
 vim /opt/homebrew/etc/nginx/nginx.conf
 ```
 
-
+[自动生成配置的网站](https://www.digitalocean.com/community/tools/nginx?domains.0.php.php=false&domains.0.routing.index=index.html&domains.0.routing.fallbackHtml=true&global.app.lang=zhCN)
 
 启动Nginx后，如果终端不出现报错，则部署成功，访问http://localhost:8080/即可进入网页。
+
+**如果需要局域网部署**，把server_name设置为本机IP。
+
+**如果需要使用https**，先下载OpenSSL，*待续*。
+
