@@ -59,3 +59,69 @@ server: {
 
 ## 如何在Nginx上部署
 
+首先，在vue项目根目录下使用命令打包当前项目。
+
+```
+npm run build
+```
+
+如果打包成功，项目中会出现一个dist文件。
+然后安装Nginx，相关步骤请自行Bing/Google，WIN / LINUX / MAC系统各有不同。
+
+如下上Nginx安装成功后，可能用到的一些路径（MAC）。
+
+|            说明             |                  路径                  |
+| :-------------------------: | :------------------------------------: |
+| nginx配置路径（conf等文件） |   /opt/homebrew/etc/nginx/nginx.conf   |
+| nginx上面部署的项目放包地址 | /opt/homebrew/Cellar/nginx/1.27.4/html |
+|        nginx中的日志        |      /opt/homebrew/var/log/nginx       |
+|   nginx中访问默认首页地址   |        /opt/homebrew/etc/nginx         |
+|          安装路径           |   /opt/homebrew/Cellar/nginx/1.27.4    |
+
+或者使用命令查看Nginx下所有文件夹路径
+
+```
+nginx -V
+
+or
+
+brew info nginx
+```
+
+
+
+确保Nginx对应的nginx.conf文件中，root路径是否为绝对路径
+
+Mac启动Nginx
+
+```
+nginx
+```
+
+如果要指定启动的nginx.conf文件
+
+```
+nginx -c /根路径
+```
+
+Mac停止Nginx
+
+```
+nginx -s stop
+```
+
+Mac重启Nginx
+
+```
+nginx -s reload
+```
+
+Mac修改Nginx配置文件路径
+
+```
+vim /opt/homebrew/etc/nginx/nginx.conf
+```
+
+
+
+启动Nginx后，如果终端不出现报错，则部署成功，访问http://localhost:8080/即可进入网页。
