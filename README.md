@@ -59,6 +59,8 @@ server: {
 
 ## 如何在Nginx上部署
 
+### 打包代码文件，以及安装Nginx
+
 首先，在vue项目根目录下使用命令打包当前项目。
 
 ```
@@ -88,11 +90,7 @@ or
 brew info nginx
 ```
 
-
-
-确保Nginx对应的nginx.conf文件中，root路径是否为绝对路径
-
-Mac启动Nginx
+**Mac启动Nginx**
 
 ```
 nginx
@@ -116,6 +114,8 @@ Mac重启Nginx
 nginx -s reload
 ```
 
+### 定义配置文件
+
 Mac修改Nginx配置文件路径，具体如何修改暂时请百度了解。
 
 ```
@@ -124,9 +124,14 @@ vim /opt/homebrew/etc/nginx/nginx.conf
 
 [自动生成配置的网站](https://www.digitalocean.com/community/tools/nginx?domains.0.php.php=false&domains.0.routing.index=index.html&domains.0.routing.fallbackHtml=true&global.app.lang=zhCN)
 
-启动Nginx后，如果终端不出现报错，则部署成功，访问http://localhost:8080/即可进入网页。
+<font size=4.5>**配置时，重点注意一下几点**</font>
 
-**如果需要局域网部署**，把server_name设置为本机IP。
+- 确保Nginx对应的nginx.conf文件中，root路径是否为绝对路径。
+- 确保在配置中加入重定向跳转，否则刷新后会报404。在server/location中加入“try_files $uri $uri/ /index.html;”。
+- **如果需要局域网部署**，把server_name设置为本机IP。
+- **如果需要使用https**，先下载OpenSSL，*待续*。
 
-**如果需要使用https**，先下载OpenSSL，*待续*。
+启动Nginx后，如果终端不出现报错，则部署成功，访问http://localhost:8080 即可进入网页。
+
+
 
